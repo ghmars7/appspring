@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Controller
 public class AppController {
 
@@ -41,6 +45,24 @@ public class AppController {
         model.addAttribute("data", appService.getMessages());
         return "messages";
     }
+
+    @GetMapping("/user")
+    public String getUsers(Model model) {
+        Set<String> users = appService.getMessages().stream()
+                .map(Message::getUsername)
+                .collect(Collectors.toSet());
+        model.addAttribute("users", users);
+        return "users";
+    }
+
+    @GetMapping("/conversation")
+    public String getUserConversation(@RequestParam("username") String username, Model model) {
+        List<Message> messages = appService.findByUsername(username);
+        model.addAttribute("messages", messages);
+        model.addAttribute("username", username);
+        return "conversation";
+    }
+
 
 
 }
