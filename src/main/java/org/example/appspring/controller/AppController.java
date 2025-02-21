@@ -18,9 +18,14 @@ public class AppController {
         this.appService = appService;
     }
 
+    @GetMapping("/")
+    public String index(Model model) {
+        return "home";
+    }
+
     @GetMapping("discuter")
     public String discuter(Model model) {
-        model.addAttribute("message", new Message()); // 🔹 Ajout de l'objet message
+        model.addAttribute("message", new Message());
         return "discussion";
     }
 
@@ -34,7 +39,6 @@ public class AppController {
     @GetMapping("messages")
     public String messages(Model model) {
         model.addAttribute("data", appService.getMessages());
-        System.out.println(appService.getMessages().get(2).getCreated_at());
         return "messages";
     }
 

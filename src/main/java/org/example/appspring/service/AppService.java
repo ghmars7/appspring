@@ -20,7 +20,7 @@ public class AppService {
 
     public List<Message> getMessages() {
         Message[] messages = restTemplate.getForObject("http://localhost:8090/getAllMessages", Message[].class);
-        return Arrays.asList(messages);  // Convertir le tableau en liste
+        return Arrays.asList(messages);
     }
 
 
