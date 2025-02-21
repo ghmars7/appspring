@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages</title>
+</head>
+<body>
+<h1>Liste des Messages</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Message</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Afficher les messages -->
+    <tr th:each="message : ${data}">
+        <td th:text="${message.username}"></td>
+        <td th:text="${message.message}"></td>
+        <td th:text="${#dates.format(message.created_at, 'dd/MM/yyyy HH:mm:ss')}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

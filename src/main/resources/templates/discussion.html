@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Discuter</title>
+</head>
+<body>
+    <a href="/discuter"><b>Discuter</b></a>
+
+    <div th:if="${data != null}">
+      <p><strong>"<span th:text="${data.getQuote_text()}"></span>"</strong></p>
+      <p><em>- <span th:text="${data.getAuthor()}"></span></em></p>
+    </div>
+
+    <form th:action="@{/discuter}" th:object="${message}" method="post">
+        <p>Nom : <input type="text" th:field="*{username}" required/></p>
+        <p>Message : <input type="text" th:field="*{message}" required/></p>
+        <p><input type="submit" value="Envoyer" /></p>
+    </form>
+</body>
+</html>
